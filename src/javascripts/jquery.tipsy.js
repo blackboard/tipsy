@@ -1,3 +1,5 @@
+// This script is modified & should be updated in https://github.com/blackboard/tipsy/edit/master/src/javascripts/jquery.tipsy.js
+
 // tipsy, facebook style tooltips for jquery
 // version 1.0.0a
 // (c) 2008-2010 jason frame [jason@onehackoranother.com]
@@ -179,6 +181,10 @@
                 eventOut = options.trigger == 'hover' ? 'mouseleave' : 'blur';
             this[binder](eventIn, enter)[binder](eventOut, leave);
         }
+        
+        this[binder](eventIn, enter)[binder]('click.tipsy', function () {
+            get(this).hide();
+        });
         
         return this;
         
