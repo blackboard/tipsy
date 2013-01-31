@@ -183,7 +183,14 @@
         }
         
         this[binder](eventIn, enter)[binder]('click.tipsy', function () {
-            get(this).hide();
+            var tipsy = $.data(this, 'tipsy');
+            if(!tipsy){
+                //If the element disappears before this click handler, we may not be able to find it.
+                //In that case, just clear all existing tipsy instances
+                $('.tipsy').remove();
+            } else {
+                tipsy.hide();
+            }
         });
         
         return this;
